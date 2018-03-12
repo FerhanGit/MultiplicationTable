@@ -1,0 +1,29 @@
+{
+    "name": "FerhanGit/multiplication",
+    "description": "Display prime numbers multiplication table in terminal",
+    "type": "library",
+    "keywords": [
+        "array",
+        "text",
+        "table",
+        "terminal",
+        "ascii",
+        "unicode"
+    ],
+    "homepage": "https://github.com/FerhanGit/multiplication",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ferhan Ismailov",
+            "email": "floorer@gbg.bg",
+            "homepage": "https://github.com/FerhanGit"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"Feri\\Multiplication\\": "src/"}
+    },
+    "require": {
+        "php": ">=5.3.0",
+        "zendframework/zend-text": "~2.5"
+    }
+}
