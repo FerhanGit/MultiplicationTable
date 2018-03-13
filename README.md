@@ -16,6 +16,13 @@ How to use
   * Install Composer dependencies - `PATH_TO_PHP composer.phar install`
   * Run the script - `PATH_TO_PHP  PATH_TO_INSTALLATION_FOLDER\index.php`
       
+Tests
+-------
+From project root run the following command:
+
+    ./vendor/bin/phpunit --configuration phpunit.xml --testsuite MultiplicationTableTestSuit
+
+
 Author
 ------
 Ferhan Ismailov

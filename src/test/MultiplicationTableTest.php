@@ -9,6 +9,7 @@ use Feri\Multiplication\Exception\MultiplicationException;
 
 class MultiplicationTableTest extends TestCase
 {
+    const USER_INPUT = 5;
     private $consoleTable = null;
 
     protected function setUp()
@@ -21,7 +22,7 @@ class MultiplicationTableTest extends TestCase
      */
     public function dataProvider()
     {
-        $userInput = 5;
+        $userInput = self::USER_INPUT;
         $rows = [];
         $headers = range(1, $userInput);
 

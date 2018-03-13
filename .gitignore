@@ -1,1 +1,3 @@
-vendor
+._*
+vendor/autoload.php
+vendor/*/

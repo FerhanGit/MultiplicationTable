@@ -2,33 +2,29 @@
 
     require_once 'vendor/autoload.php';
 
-    use Feri\Multiplication\MultiplicationTable;
+    use Feri\Multiplication\Exception\MultiplicationException;
+    use Feri\Multiplication\Service\InputProcessor;
 
     if (php_sapi_name() !== "cli") {
-        throw new \Exception('Only Command Line allowed');
-    }
-
-    function getInput($msg){
-        fwrite(STDOUT, "$msg: ");
-        $varin = trim(fgets(STDIN));
-        return $varin;
+        throw new MultiplicationException('Only Command Line allowed');
     }
 
     $stdin = fopen('php://stdin', 'r');
-
     $loop = true;
     while ($loop) {
-        $input = getInput("Enter Max Number: ");
+        $input = InputProcessor::getInput("Enter Max Number: ");
+        $table = new LucidFrame\Console\ConsoleTable();
         $data = [];
         for ($i = 1; $i <= $input; $i++) {
+            $table->addHeader($i);
             $rowData = [];
             for ($j = 2; $j <= $input; $j++) {
                 $rowData[] = $i * $j;
             }
-            $data[] = array_merge([$i], $rowData);
+            if ($i > 1) {
+                $table->addRow(array_merge([$i], $rowData));
+            }
         }
-        $renderer = new MultiplicationTable($data);
-        echo $renderer->getTable();
+        $table ->setPadding(2)->display();
     }
-
 ?>
