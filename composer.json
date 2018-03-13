@@ -1,5 +1,5 @@
 {
-    "name": "FerhanGit/multiplication",
+    "name": "FerhanGit/MultiplicationTable",
     "description": "Display prime numbers multiplication table in terminal",
     "type": "library",
     "keywords": [
@@ -10,7 +10,7 @@
         "ascii",
         "unicode"
     ],
-    "homepage": "https://github.com/FerhanGit/multiplication",
+    "homepage": "https://github.com/FerhanGit/MultiplicationTable",
     "license": "MIT",
     "authors": [
         {
