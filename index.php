@@ -3,28 +3,27 @@
     require_once 'vendor/autoload.php';
 
     use Feri\Multiplication\Exception\MultiplicationException;
+    use Feri\Multiplication\Service\ProcessType;
     use Feri\Multiplication\Service\InputProcessor;
 
-    if (php_sapi_name() !== "cli") {
-        throw new MultiplicationException('Only Command Line allowed');
-    }
-
-    $stdin = fopen('php://stdin', 'r');
-    $loop = true;
-    while ($loop) {
-        $input = InputProcessor::getInput("Enter Max Number: ");
-        $table = new LucidFrame\Console\ConsoleTable();
-        $data = [];
-        for ($i = 1; $i <= $input; $i++) {
-            $table->addHeader($i);
-            $rowData = [];
-            for ($j = 2; $j <= $input; $j++) {
-                $rowData[] = $i * $j;
-            }
-            if ($i > 1) {
-                $table->addRow(array_merge([$i], $rowData));
-            }
+    try {
+        if (php_sapi_name() !== "cli") {
+            throw new MultiplicationException('Only Command Line allowed');
         }
-        $table ->setPadding(2)->display();
+
+        $stdin = fopen('php://stdin', 'r');
+        $loop = true;
+        while ($loop) {
+            $inpuProcessType = InputProcessor::getInput("Enter Process type (allowed 'primes' , 'multiplication'): ");
+            $inputMaxNumber = InputProcessor::getInput("Enter Max Number: ");
+            if (empty($inpuProcessType) || empty($inputMaxNumber)) {
+                throw new MultiplicationException('Invalid or missing input params');
+            }
+            $table = new LucidFrame\Console\ConsoleTable();
+            $table = (new ProcessType($inpuProcessType))->getInstance()->process($table, $inputMaxNumber);
+            $table->setPadding(2)->display();
+        }
+    } catch(\Throwable $e) {
+        echo $e->getMessage();
     }
 ?>

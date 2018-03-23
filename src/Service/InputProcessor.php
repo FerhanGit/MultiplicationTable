@@ -9,5 +9,4 @@ class InputProcessor
         $varin = trim(fgets(STDIN));
         return $varin;
     }
-
 }
